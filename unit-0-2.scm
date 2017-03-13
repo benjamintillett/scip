@@ -16,11 +16,7 @@
 (define (indef-article word)
   (se
    (cond
-    ((equal? (first word) 'a) 'an)
-    ((equal? (first word) 'e) 'an)
-    ((equal? (first word) 'i) 'an)
-    ((equal? (first word) 'o) 'an)
-    ((equal? (first word) 'u) 'an)
+    ((member? (first word) '(a e i o u)) 'an)
     (else 'a)
     )
    word
