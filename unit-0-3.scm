@@ -27,4 +27,20 @@
       0
       (+ (first sent) (sum-sent (bf sent)))))
 
+(define (score-first-word sent)
+  (if (equal? 'um (first sent))
+      1
+      0)  
 
+
+(define (count-ums sent)
+  (if (empty? sent)
+      0
+      (+
+       (score-first-word sent)
+       (count-ums (bf sent)))))
+
+
+
+      
+      
