@@ -50,5 +50,10 @@
       '()
       (se (first (first sent)) (initials (bf sent)))))
 
+(define (numbers sent)
+  (cond
+   ((empty? sent) ())
+   ((number? (first sent)) (se (first sent) (numbers (bf sent))))
+   (else (numbers (bf sent)))))
       
       
