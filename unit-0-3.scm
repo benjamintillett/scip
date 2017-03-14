@@ -45,7 +45,10 @@
       'blastof!
       (se number (count-down (- number 1)))))
    
-  
+(define (initials sent)
+  (if (empty? sent)
+      '()
+      (se (first (first sent)) (initials (bf sent)))))
 
       
       
