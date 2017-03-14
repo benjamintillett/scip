@@ -30,7 +30,7 @@
 (define (score-first-word sent)
   (if (equal? 'um (first sent))
       1
-      0)  
+      0))  
 
 
 (define (count-ums sent)
@@ -40,7 +40,12 @@
        (score-first-word sent)
        (count-ums (bf sent)))))
 
-
+(define (count-down number)
+  (if (= number 0)
+      'blastof!
+      (se number (count-down (- number 1)))))
+   
+  
 
       
       
