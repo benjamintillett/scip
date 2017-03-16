@@ -97,3 +97,16 @@
 
 (define (gpa grades)
   (/ (sum (get-scores grades)) (length grades))) 
+
+
+ (define (expand sent)
+  (cond
+   ((empty? sent) ())
+   ((number? (first sent)) (se (n-words (first sent) (item 2 sent)) (expand (bf (bf sent))))) 
+   (else (se (first sent) (expand (bf sent))))))
+   
+(define (n-words n word)
+  (if (= n 0)
+      '()
+      (se word (n-words (- n 1) word))))
+
