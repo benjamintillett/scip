@@ -9,3 +9,7 @@
   (if (<= (length sent) 1)
       ()
       (se (- (item 1 sent) (item 2 sent)) (differences (bf sent)))))
+
+(define (location word sent)
+  
+  
