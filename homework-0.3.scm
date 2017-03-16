@@ -79,16 +79,16 @@
    ((equal? (last grade) '-) -0.33)
    (else 0)))
 
-(define (every sent function)
+(define (map sent function)
   (if (empty? sent)
       ()
-      (se (function (first sent)) (every (bf sent) function))))
+      (se (function (first sent)) (map (bf sent) function))))
 
 (define (get-score grade)
   (+ (base-grade grade) (grade-modifier grade)))
 
 (define (get-scores grades)
-  (every grades get-score))
+  (map grades get-score))
 
 (define (sum sent)
   (if (empty? sent)
@@ -109,4 +109,33 @@
   (if (= n 0)
       '()
       (se word (n-words (- n 1) word))))
+
+(define (count word)
+  (if (empty? word)
+      0
+      (+ 1 (count (bf word)))))
+
+(define (same-shape sent1 sent2)
+
+  (define (both-empty?)
+    (and (empty? sent1) (empty? sent2)))
+
+  (define (one-empty?)
+    (or (empty? sent1) (empty? sent2)))
+
+  (define (first-word-same-length?)
+    (= (count (first sent1)) (count (first sent2))))
+    
+  (cond
+   ((both-empty?) #t)
+   ((one-empty?) #f)
+   ((first-word-same-length?) (same-shape (bf sent1) (bf sent2)))
+   (else #f)))
+
+
+
+(define (every sent predicate)
+  (if (empty? sent)
+      #t
+      (and (predicate (first sent)) (every (bf sent) predicate))))
 
