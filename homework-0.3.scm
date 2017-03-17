@@ -133,7 +133,6 @@
    (else #f)))
 
 
-
 (define (every sent predicate)
   (if (empty? sent)
       #t
