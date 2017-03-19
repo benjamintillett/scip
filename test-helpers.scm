@@ -1,6 +1,8 @@
 (load "./helpers")
 
-; an assertion in a lamda that returns a bool  
+; An assertion contains lamda that returns a boolean.
+; Such that the lamda is executed within the body of the test funciton.
+; allowing the assertion to provide custom logging for the test.
 
 (define (assert-true assertion)
    assertion)
@@ -35,13 +37,9 @@
       (equal? a b))
      (else #f))))
 
-(define (assert-equals-number a b)
-  (= a b))
-
 (define (test text assertion)
   (display (word "\nTEST: " text))
   (if (assertion)
       (display "\n    PASS")
       (display "\n    FAIL"))
   (newline))
-
