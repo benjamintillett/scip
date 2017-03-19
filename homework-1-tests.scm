@@ -15,3 +15,6 @@
 
 (test "squares: returns a list with all the passed numbers sqaured"
       (assert-equals '(1 4 9) (squares '(1 2 3))))
+
+(test "switch: replaces first You for i and all others i or me for you"
+      (assert-equals '(i told you that you should wake me up) (switch '(You told me that i should wake you up)))) 
