@@ -5,9 +5,8 @@
    (else (se (first sent) (dupls-removed (bf sent))))))
       
 
-(define (check-for-dups sent)
+(define (count-word sent word)
   (cond
-   ((empty? sent) #f)
-   ((member? (first sent) (bf sent)) #t)
-   (check-for-dups (bf sent))))
-   
+   ((empty? sent) 0)
+   ((equal? word (first sent)) (+ 1 (count-word (bf sent) word)))
+   (else (count-word (bf sent) word))))
