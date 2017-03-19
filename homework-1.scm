@@ -10,3 +10,11 @@
    ((empty? sent) 0)
    ((equal? word (first sent)) (+ 1 (count-word (bf sent) word)))
    (else (count-word (bf sent) word))))
+
+(define (square number)
+  (* number number))
+
+(define (squares list)
+  (if (empty? list)
+      ()
+      (se (square (first list)) (squares (bf list)))))

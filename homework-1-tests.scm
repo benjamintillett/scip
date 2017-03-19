@@ -12,3 +12,6 @@
 
 (test "count-word: returns the correct number of matching words"
       (assert-equals 2 (count-word '(i not really like not) 'not)))
+
+(test "squares: returns a list with all the passed numbers sqaured"
+      (assert-equals '(1 4 9) (squares '(1 2 3))))
