@@ -1,52 +1,194 @@
-(define (sum fn a b)
-  (if (> a b)
-      0
-      (+ (fn a) (sum fn (+ a 1) b))))
+; Exercise 1 - Define substitute
 
-(define tolerance 0.00001)
-
-(define (fixed-point f first-guess)
-  (define (close-enough?  v1 v2)
-    (< (abs (- v1 v2)) tolerance))
-  (define (try guess)
-    (let ((next (f guess)))
-      (if (close-enough? guess next)
-	  next
-	  (try next))))
-  (try first-guess))
-
-(define (average-damp f)
-  (lambda (y) (* 0.5 (+ y (f y)))))
-
-(define (sqrt x)
-  (fixed-point (average-damp (lambda (y) (/ x y)))
-  1.0))
-
-(define (cube-root x)
-  (fixed-point (average-damp (lambda (y) (/ (/ x y) y)))
-	       1.0))
+(define (substitute sent old-word new-word)
+  (cond
+   ((empty? sent) ())
+   ((equal? (first sent) old-word) (se new-word (substitute (bf sent) old-word new-word)))
+   (else (se (first sent) (substitute (bf sent) old-word new-word)))))
 
 
-(define (iterate start improve good-enough?)
-  (if (good-enough? start)
-      start
-      (iterate (improve start) improve good-enough?)))
 
-(define (fixed-point2 f first-guess)
-  (iterate first-guess
-	   (lambda (x) (f x))
-	   (lambda (x) (< (abs (- x (f x))) tolerance))))
+; Exercise 2 - Try out the expressions!
 
-(define (sqrt2 x)
-  (fixed-point2 (average-damp (lambda (y) (/ x y)))
-  1.0))
 
-(define (square x)
-  (* x x))
+(lambda (x) (+ x 3))
+;-> returns:
 
-(define (largest-square total guess)
-  (iterate guess
-	   (lambda (x) (+ x 1))
-	   (lambda (x) (< total (square (+ x 1))))))
+((lambda (x) (+ x 3)) 7)
+;-> returns:
 
+(define (make-adder num)
+  (lambda (x) (+ x num))) 
+((make-adder 3) 7)
+;-> returns:
+
+(define plus3 (make-adder 3)) 
+(plus3 7)
+;-> returns:
+
+(define (square x) (* x x)) 
+(square 5)
+;-> returns:
+
+(define sq (lambda (x) (* x x))) 
+(sq 5)
+;-> returns
+
+(define (try f) (f 3 5)) 
+(try +)
+;-> returns:
+
+(try word)
+;-> returns:
+
+
+
+; Exercise 3
+#|
+
+How many arguments g has: 
+
+Type of value returned by g:
+
+|#
+
+; Exercise 4 - Define f1, f2, f3, f4, and f5
+
+; Exercise 5 - Try out the expressions
+
+(define (t f) 
+  (lambda (x) (f (f (f x)))) )
+
+#|
+1. ((t 1+) 0) returns:
+
+2. ((t (t 1+)) 0) returns:
+
+3. (((t t) 1+) 0) returns:
+
+|#
+
+; Exercise 6 - Try out the expressions
+
+(define (s x)
+  (+ 1 x))
+
+#|
+
+1. ((t s) 0) returns:
+
+2. ((t (t s)) 0) returns:
+
+3. (((t t) s) 0) returns:
+
+|#
+
+; Exercise 7 - Define make-tester
+
+(define (make-tester wd)
+  ; Your code here
+  (error "Not yet implemented")
+)
+
+; Exercise 8 - SICP exercises
+
+; SICP 1.31a
+
+(define (product term a next b)
+  ; Your code here
+  (error "Not yet implemented")
+)
+
+(define (estimate-pi)
+  ; Your code here
+  (error "Not yet implemented")
+)
+
+; SICP 1.32a
+
+(define (accumulate combiner null-value term a next b)
+  ; Your code here
+  (error "Not yet implemented")
+)
+
+#|
+
+Write sum in terms of accumulate:
+
+
+Write product in terms of accumulate:
+
+|#
+
+; SICP 1.33
+
+(define (filtered-accumulate combiner null-value term a next b pred)
+  ; Your code here
+  (error "Not yet implemented")
+)
+
+(define (sum-sq-prime a b)
+  ; Your code here
+  (error "Not yet implemented")
+)
+
+(define (prod-of-some-numbers n)
+  ; Your code here
+  (error "Not yet implemented")
+)
+
+; SICP 1.40 - Define cubic
+
+(define (cubic a b c)
+  ; Your code here
+  (error "Not yet implemented")
+)
+
+; SICP 1.41 - Define double
+
+(define (double proc)
+  ; Your code here
+  (error "Not yet implemented")
+)
+
+; SICP 1.43 - Define repeated
+
+(define (repeated proc n)
+  ; Your code here
+  (error "Not yet implemented")
+)
+
+; Exercise 9 - Define every
+
+(define (every proc sent)
+  ; Your code here
+  (error "Not yet implemented")
+)
+
+; Exercise 10 - Try out the expressions
+
+#|
+
+(every (lambda (letter) (word letter letter)) 'purple)
+-> returns:
+
+(every (lambda (number) (if (even? number) (word number number) number))
+       '(781 5 76 909 24))
+-> returns:
+
+(keep even? '(781 5 76 909 24))
+-> returns:
+
+(keep (lambda (letter) (member? letter 'aeiou)) 'bookkeeper)
+-> returns:
+
+(keep (lambda (letter) (member? letter 'aeiou)) 'syzygy)
+-> returns:
+
+(keep (lambda (letter) (member? letter 'aeiou)) '(purple syzygy))
+-> returns:
+
+(keep (lambda (wd) (member? 'e wd)) '(purple syzygy))
+-> returns:
+|#
 
