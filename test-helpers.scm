@@ -5,11 +5,10 @@
 ; allowing the assertion to provide custom logging for the test.
 
 (define (assert-true assertion)
-   assertion)
+   (lambda () assertion))
 
 (define (assert-false assertion)
-  (lambda ()
-    (not (assertion))))
+  (lambda () (not assertion)))
 
 (define (assert-equals a b)
 

@@ -18,3 +18,13 @@
 
 (test "switch: replaces first You for i and all others i or me for you"
       (assert-equals '(i told you that you should wake me up) (switch '(You told me that i should wake you up)))) 
+
+(test "ordered?: returns true for ascending list"
+      (assert-true (ordered? '(1 2 3)))) 
+
+(test "ordered?: returns true for an empty list"
+      (assert-true (ordered? '())))
+
+(test "ordered?: returns false for a descending list"
+      (assert-false (ordered? '(3 2 1))))
+      

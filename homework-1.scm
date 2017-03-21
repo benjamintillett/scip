@@ -27,13 +27,19 @@
 
     (define (starts-with-you)
       (equal? 'you (first sent)))
-
+    
     (cond
      ((empty? sent) ())
      ((starts-with-me-or-i) (se 'you (switch-words (bf sent))))
      ((starts-with-you) (se 'me (switch-words (bf sent)))) 
      (else (se (first sent) (switch-words (bf sent))))))
 
-  (se
-   'i
-   (switch-words (bf sent))))
+  (se 'i (switch-words (bf sent))))
+
+(define (ordered? sent)
+  (cond
+   ((empty? sent) #t)
+   ((= (length sent) 1) #t)
+   ((< (item 1 sent) (item 2 sent)) (ordered? (bf sent)))
+   (else #f)))
+
