@@ -1,115 +1,64 @@
 ; Exercise 1 - Define substitute
 
 (define (substitute sent old-word new-word)
+
+  (define (first-word)
+    (first sent))
+  
+  (define (first-word-matches)
+    (equal? (first-word) old-word))
+
+  (define (substitute-remaining)
+    (substitute (bf sent) old-word new-word))
+
   (cond
    ((empty? sent) ())
-   ((equal? (first sent) old-word) (se new-word (substitute (bf sent) old-word new-word)))
-   (else (se (first sent) (substitute (bf sent) old-word new-word)))))
+   ((first-word-matches) (se new-word (substitute-remaining)))
+   (else (se (first-word) (substitute-remaining)))))
 
-
-
-; Exercise 2 - Try out the expressions!
-
-
-(lambda (x) (+ x 3))
-;-> returns:
-
-((lambda (x) (+ x 3)) 7)
-;-> returns:
-
-(define (make-adder num)
-  (lambda (x) (+ x num))) 
-((make-adder 3) 7)
-;-> returns:
-
-(define plus3 (make-adder 3)) 
-(plus3 7)
-;-> returns:
-
-(define (square x) (* x x)) 
-(square 5)
-;-> returns:
-
-(define sq (lambda (x) (* x x))) 
-(sq 5)
-;-> returns
-
-(define (try f) (f 3 5)) 
-(try +)
-;-> returns:
-
-(try word)
-;-> returns:
-
-
-
-; Exercise 3
-#|
-
-How many arguments g has: 
-
-Type of value returned by g:
-
-|#
-
-; Exercise 4 - Define f1, f2, f3, f4, and f5
-
-; Exercise 5 - Try out the expressions
-
-(define (t f) 
-  (lambda (x) (f (f (f x)))) )
-
-#|
-1. ((t 1+) 0) returns:
-
-2. ((t (t 1+)) 0) returns:
-
-3. (((t t) 1+) 0) returns:
-
-|#
-
-; Exercise 6 - Try out the expressions
-
-(define (s x)
-  (+ 1 x))
-
-#|
-
-1. ((t s) 0) returns:
-
-2. ((t (t s)) 0) returns:
-
-3. (((t t) s) 0) returns:
-
-|#
 
 ; Exercise 7 - Define make-tester
-
 (define (make-tester wd)
-  ; Your code here
-  (error "Not yet implemented")
+  (lambda (x) (equal? x wd))
 )
 
 ; Exercise 8 - SICP exercises
 
 ; SICP 1.31a
 
+(define (identity x) x)
+(define (double-it x) (* 2 x))
+(define (increment x) (+ 1 x))
+(define (increment-two x) (+ 2 x))
+(define (decrement x) (- x 1))
+
 (define (product term a next b)
-  ; Your code here
-  (error "Not yet implemented")
-)
+  (if (> a b)
+      1
+      (* (term a) (product term (next a) next b))) 
+  )
+
+(define (factorial x)
+  (product identity 1 increment x))
+
+
+(define (pi-term n)
+  (if (even? n)
+      (/ (+ n 2) (+ n 1))
+      (/ (+ n 1) (+ n 2))))
 
 (define (estimate-pi)
-  ; Your code here
-  (error "Not yet implemented")
+  (* 4 (product pi-term 1 increment 10000))
 )
 
 ; SICP 1.32a
 
 (define (accumulate combiner null-value term a next b)
-  ; Your code here
-  (error "Not yet implemented")
+  (if (> a b)
+      null-value
+      (combiner (term a) (accumulate combiner null-value term (next a) next b)))
 )
+
 
 #|
 
@@ -119,6 +68,11 @@ Write sum in terms of accumulate:
 Write product in terms of accumulate:
 
 |#
+(define (product term a next b)
+  (accumulate * 1 term a next b))
+
+(define (sum term a next b)
+  (accumulate + 0 term a next b))
 
 ; SICP 1.33
 
