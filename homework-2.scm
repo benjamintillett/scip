@@ -68,6 +68,7 @@ Write sum in terms of accumulate:
 Write product in terms of accumulate:
 
 |#
+
 (define (product term a next b)
   (accumulate * 1 term a next b))
 
@@ -77,9 +78,33 @@ Write product in terms of accumulate:
 ; SICP 1.33
 
 (define (filtered-accumulate combiner null-value term a next b pred)
-  ; Your code here
-  (error "Not yet implemented")
-)
+  (define (accumulate-rest)
+    (filtered-accumulate combiner null-value term (next a) next b pred))
+  (cond
+   ((> a b) null-value)
+   ((pred a) (combiner (term a) (accumulate-rest)))
+   (else (accumulate-rest))))
+
+(define (return-true x) #t)
+
+(define (sum term a next b)
+  (filtered-accumulate + 0 term a next b return-true))
+
+
+(define (prime? x)
+
+  (define (is-factor? y)
+    (= 0 (remainder x y)))
+  
+  (define (prime-iter y)
+    (cond
+     ((<= y 1) #t)
+     ((is-factor? y) #f)
+     (else (prime-iter (- y 1)))))
+
+  (prime-iter (- x 1)))
+
+
 
 (define (sum-sq-prime a b)
   ; Your code here

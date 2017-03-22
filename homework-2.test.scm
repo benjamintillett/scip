@@ -40,3 +40,12 @@
       (assert-equals
        15
        (sum identity 1 increment 5)))
+
+(test "(prime? 1) returns true"
+      (assert-true (prime? 1)))
+
+(test "(prime? 4) returns false"
+      (assert-false (prime? 4)))
+
+(test "(prime? 401) returns true"
+      (assert-true (prime? 401)))
