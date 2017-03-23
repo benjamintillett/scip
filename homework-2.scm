@@ -112,16 +112,10 @@ Write product in terms of accumulate:
 (define (sum-of-primes-squared a b)
   (filtered-accumulate + 0 square a increment b prime?))
 
-
-(define (sum-sq-prime a b)
-  ; Your code here
-  (error "Not yet implemented")
-)
-
-(define (prod-of-some-numbers n)
-  ; Your code here
-  (error "Not yet implemented")
-)
+(define (every proc list)
+  (if (empty? list)
+      ()
+      (se (proc (first list)) (every proc (bf list)))))
 
 ; SICP 1.40 - Define cubic
 
@@ -146,10 +140,6 @@ Write product in terms of accumulate:
 
 ; Exercise 9 - Define every
 
-(define (every proc sent)
-  ; Your code here
-  (error "Not yet implemented")
-)
 
 ; Exercise 10 - Try out the expressions
 

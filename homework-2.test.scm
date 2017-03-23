@@ -57,3 +57,15 @@
       (assert-equals
        38
        (sum-of-primes-squared 1 5)))
+
+
+; Exercise 9
+(test "(every square '(1 2 3 4)) applies squre to each argument in the list"
+      (assert-equals
+       '(1 4 9 16)
+       (every square '(1 2 3 4))))
+
+(test "(every square word with a different procudure"
+      (assert-equals
+       '(n m)
+       (every first '(nowhere man))))
