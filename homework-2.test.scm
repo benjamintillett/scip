@@ -41,11 +41,19 @@
        15
        (sum identity 1 increment 5)))
 
-(test "(prime? 1) returns true"
-      (assert-true (prime? 1)))
+(test "(prime? 1) returns false"
+      (assert-false (prime? 1)))
+
+(test "(prime? 2) returns true"
+      (assert-true (prime? 2)))
 
 (test "(prime? 4) returns false"
       (assert-false (prime? 4)))
 
 (test "(prime? 401) returns true"
       (assert-true (prime? 401)))
+
+(test "(sum-of-primes-squared 1 5) returns 38"
+      (assert-equals
+       38
+       (sum-of-primes-squared 1 5)))

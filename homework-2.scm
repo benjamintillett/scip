@@ -69,6 +69,9 @@ Write product in terms of accumulate:
 
 |#
 
+(define (square x)
+  (* x x))
+
 (define (product term a next b)
   (accumulate * 1 term a next b))
 
@@ -102,8 +105,12 @@ Write product in terms of accumulate:
      ((is-factor? y) #f)
      (else (prime-iter (- y 1)))))
 
-  (prime-iter (- x 1)))
+  (if (<= x 1)
+      #f
+      (prime-iter (- x 1))))
 
+(define (sum-of-primes-squared a b)
+  (filtered-accumulate + 0 square a increment b prime?))
 
 
 (define (sum-sq-prime a b)
