@@ -5,3 +5,6 @@
    ((> a b) null-value)
    ((pred a) (combiner (term a) (accumulate-rest)))
    (else (accumulate-rest))))
+
+(define (reject predicate list)
+ (keep (lambda (x) (not (predicate x))) list)) 
