@@ -12,3 +12,6 @@
 
 (test "score-card: returns false for ace of hearts"
       (assert-equals #f (score-card 'AH)))
+
+(test "score-card: correctly handes two digits"
+      (assert-equals 10 (score-card '10S)))

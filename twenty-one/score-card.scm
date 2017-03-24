@@ -3,8 +3,9 @@
 (define ACE 'A)
 
 (define (score-card card)
+
   (define (rank)
-    (first card))
+    (bl card))
   
   (define (score-rank rank)
     (cond
