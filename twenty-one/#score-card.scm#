@@ -6,12 +6,12 @@
     (bl card))
 
 (define (score-card card)
-  (define (score-rank rank)
+  (let ((rank (get-rank card)))
     (cond
      ((member? rank NUMBERS) rank)
      ((member? rank FACES) 10)
-     ((equal? rank ACE) 1)))
+     ((equal? rank ACE) 1))))
 
-  (score-rank (get-rank card)))
+  
     
   
