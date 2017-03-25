@@ -1,3 +1,5 @@
+(load "./core")
+
 (define (twenty-one strategy)
   (define (play-dealer customer-hand dealer-hand-so-far rest-of-deck)
     (cond ((> (best-total dealer-hand-so-far) 21) 1)
@@ -40,3 +42,7 @@
 	deck
     	(move-card deck '() (random size)) ))
   (shuffle (make-ordered-deck) 52) )
+
+
+(define (play-n strategy n)
+  (accumulate + 0 (lambda (x) (twenty-one strategy)) 0 increment n))
