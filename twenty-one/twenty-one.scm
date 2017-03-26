@@ -1,4 +1,3 @@
-
 (load "./core")
 
 (define (twenty-one strategy)
