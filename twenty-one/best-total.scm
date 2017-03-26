@@ -8,7 +8,7 @@
   (define (ace? card)    
     if(number? (get-rank card))
      #f
-     (equal? (first card) 'A))
+     (equal? (get-rank card) 'A))
   
   (define (num-aces)
     (count (keep ace? hand)))
