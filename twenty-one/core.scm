@@ -17,3 +17,9 @@
 
 (define (increment x)
   (+ 1 x))
+
+(define (count-where list predicate)
+  (count (keep predicate list)))
+
+(define (contains-where? list predicate)
+  (>= (count-where list predicate) 1))
