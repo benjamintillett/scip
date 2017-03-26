@@ -1,0 +1,2 @@
+(define (suit-strategy suit with-suit-strategy without-suit-strategy)
+  
