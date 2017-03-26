@@ -18,3 +18,5 @@
 
 (test "contains-suit?: returns false for a hand that doesn't contain the given suit"
       (assert-false (contains-suit? 'S '(3D JH))))
+
+

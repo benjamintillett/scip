@@ -21,5 +21,5 @@
 (define (count-where list predicate)
   (count (keep predicate list)))
 
-(define (contains-where? list predicate)
+(define (contains? list predicate)
   (>= (count-where list predicate) 1))
