@@ -6,6 +6,7 @@
 (define (heart? card)
   (equal? (get-suit card) 'H))
 
+
 (define (contains-heart? hand)
   (>= (count (keep heart? hand)) 1))
 

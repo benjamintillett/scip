@@ -23,3 +23,13 @@
 
 (define (contains? list predicate)
   (>= (count-where list predicate) 1))
+
+(define (ace? card)
+  if(number? (get-rank card))
+  #f
+  (equal? (get-rank card) 'A))
+
+(define (jack? card)
+  if(number? (get-rank card))
+  #f
+  (equal? (get-rank card) 'X))
